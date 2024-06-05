@@ -1,0 +1,31 @@
+CREATE DATABASE projetofinanceiro;
+
+USE projetofinanceiro;
+
+CREATE TABLE categoria (
+    nome VARCHAR(255) PRIMARY KEY
+);
+
+CREATE TABLE conta (
+    id VARCHAR(255) PRIMARY KEY,
+    saldo DECIMAL(10, 2)
+);
+
+CREATE TABLE transacao (
+    id VARCHAR(255) PRIMARY KEY,
+    descricao VARCHAR(255),
+    valor DECIMAL(10, 2),
+    data DATE,
+    tipo VARCHAR(50),
+    conta_id VARCHAR(255),
+    categoria_nome VARCHAR(255),
+    FOREIGN KEY (conta_id) REFERENCES conta(id),
+    FOREIGN KEY (categoria_nome) REFERENCES categoria(nome)
+);
+
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nomeCompleto VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    senha VARCHAR(255)
+);
